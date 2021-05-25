@@ -7,7 +7,7 @@ A simple example of deploying machine learning/deep learning applications.
 In this example, 
 *  A **PyTorch**-based object detector is built
 *  Served using **Flask** Endpoints
-*  The tasks are queued and asyncronously called with **Celery**
+*  The tasks are queued and called asynchronous with **Celery**
 *  The Job history and the results are saved in **MongoDB**
 *  Deployed using **Docker** and **Docker-Compose**
 ## Requirements
