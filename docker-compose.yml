@@ -14,8 +14,8 @@ services:
         command:  bash -c "export LANG=C.UTF-8 && export PYTHONPATH=. && python3 app.py"
         runtime: nvidia
         
-        volumes:
-            - ./:/app
+        # volumes:
+        #     - ./:/app
         depends_on:
             - mongodb
             - worker
@@ -35,8 +35,8 @@ services:
             DB_NAME: "test_db"
             DB_HOST: "mongodb://mongodb:27017/test_db"
             PYTHONUNBUFFERED: 1
-        volumes:
-            - ./:/app
+        # volumes:
+        #     - ./:/app
                 
     mongodb:
         image: mongo:latest
