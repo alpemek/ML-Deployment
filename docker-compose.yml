@@ -1,0 +1,57 @@
+ 
+version: "3.1"
+
+services:
+    app:
+        build: .
+        environment:
+            DB_NAME: "test_db"
+            DB_HOST: "mongodb://mongodb:27017/test_db"
+            FLASK_RUN_HOST: 0.0.0.0
+            BROKER_URL: amqp://admin:mypass@rabbitmq:5672//
+            RESULT_BACKEND: rpc://
+            PYTHONUNBUFFERED: 1
+        command:  bash -c "export LANG=C.UTF-8 && export PYTHONPATH=. && python3 app.py"
+        runtime: nvidia
+        
+        volumes:
+            - ./:/app
+        depends_on:
+            - mongodb
+            - worker
+
+        ports:
+            - "5000:5000"
+        
+    worker:
+        build: .
+        command: celery worker -A celery_app.app -P solo --loglevel=INFO
+        runtime: nvidia
+        depends_on:
+            - rabbitmq
+        environment:
+            BROKER_URL: amqp://admin:mypass@rabbitmq:5672//
+            RESULT_BACKEND: rpc://
+            DB_NAME: "test_db"
+            DB_HOST: "mongodb://mongodb:27017/test_db"
+            PYTHONUNBUFFERED: 1
+        volumes:
+            - ./:/app
+                
+    mongodb:
+        image: mongo:latest
+        container_name: "mongodb"
+        environment:
+            MONGO_INITDB_DATABASE: "test_db"
+        ports:
+            - 27017:27017
+        command: mongod
+
+
+    rabbitmq:
+        image: rabbitmq:3.6.6
+        ports:
+            - "5672:5672"
+        environment:
+            - RABBITMQ_DEFAULT_USER=admin
+            - RABBITMQ_DEFAULT_PASS=mypass
