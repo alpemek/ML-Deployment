@@ -9,7 +9,7 @@ app = Flask(__name__)
 #     'host': os.environ.get("DB_HOST")
 # }
 
-@app.route("/jobs", methods=['GET', 'POST'])
+@app.route("/api/v1/jobs", methods=['GET', 'POST'])
 def jobs():
     if request.method == 'POST':
         data = request.get_json()
@@ -27,7 +27,7 @@ def jobs():
         return make_response(jsonify(job_items), 200)
 
 
-@app.route("/jobs/<job_id>", methods=['GET'])
+@app.route("/api/v1/jobs/<job_id>", methods=['GET'])
 def job(job_id):
     job_item = get_job(job_id)
     return make_response(jsonify(job_item), 200)
