@@ -1,5 +1,5 @@
 from celery_app import app
-from object_detection.db import Job
+from manager.db import Job
 
 run_detector = app.signature(
     'object_detection.worker.run_detector')

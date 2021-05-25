@@ -1,6 +1,6 @@
 import os
 from flask import Flask, jsonify, Response, make_response, request
-from object_detection.manager import start_job, get_jobs, get_job
+from manager.manager import start_job, get_jobs, get_job
 
 app = Flask(__name__)
 

@@ -19,5 +19,6 @@ class Job(Document):
             "id": str(self.id),
             "state": str(self.state),
             "time_created": str(self.time_created),
+            "source" : str(self.source),
             "result": list(self.result)
         }

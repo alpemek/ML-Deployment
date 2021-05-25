@@ -2,7 +2,7 @@ import requests
 import traceback
 from PIL import Image
 from celery_app import app
-from object_detection.db import Job
+from manager.db import Job
 from object_detection.model import ObjectDetector
 
 detector = ObjectDetector()
