@@ -2,3 +2,6 @@ flask
 Pillow
 torch
 torchvision
+requests
+mongoengine
+celery==4.4.2
