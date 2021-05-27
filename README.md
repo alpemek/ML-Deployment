@@ -25,7 +25,7 @@ Start and attach to the docker-compose services:
 docker-compose up
 ```
 ## Endpoints
-- Start a Job : `POST /api/v1/jobs/`
+- Start a Job : `POST /api/v1/jobs`
 
       curl -X POST -H "Content-Type: application/json" -d '{"url":"http://ai.stanford.edu/~jkrause/cars/car2.jpg"}' http://127.0.0.1:5000/api/v1/jobs
 
@@ -41,7 +41,7 @@ docker-compose up
 
     ```
 
-- Get all Jobs : `GET /api/v1/jobs/`
+- Get all Jobs : `GET /api/v1/jobs`
 
       curl -X GET http://127.0.0.1:5000/api/v1/jobs
 
@@ -178,7 +178,7 @@ docker-compose up
     ]
 
     ```
-- Get a single Job : `GET /api/v1/jobs/`
+- Get a single Job : `GET /api/v1/jobs/<job_id>`
 
       curl -X GET http://127.0.0.1:5000/api/v1/jobs/60ad413cc91fb4916a53315f
 
